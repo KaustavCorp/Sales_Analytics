@@ -1,0 +1,1 @@
+We run this once to generate the source data using faker module.
