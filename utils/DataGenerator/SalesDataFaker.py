@@ -5,7 +5,7 @@ from faker import Faker
 from dotenv import load_dotenv
 
 # --- Load .env from project root ---
-# Go up three levels from utils/DataGenerator/SalesDataFaker.py to reach root
+# Go up three levels from utils/DataGenerator/SalesDataFaker.py to reach root.
 env_path = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), ".env")
 load_dotenv(dotenv_path=env_path)
 
