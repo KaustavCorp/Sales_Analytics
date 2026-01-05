@@ -6,8 +6,8 @@ spark = SparkSession.builder\
                     .master("local[2]")\
                     .getOrCreate()
 
-input_data = [("Kaustav",33,"Burnpur"),
-              ("Papri",30,"Asansol")]
+input_data = [("Jade",33,"Borneo"),
+              ("Wilson",30,"Agra")]
 input_schema = StructType([StructField("Name",StringType(),False),
                     StructField("Age",IntegerType(),False),
                     StructField("Location",StringType(),False)])
