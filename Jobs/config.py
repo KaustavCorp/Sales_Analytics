@@ -1,7 +1,10 @@
 # config.py
 import os
 from pyspark.sql import SparkSession
+from dotenv import load_dotenv
 
+env_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), ".env")
+load_dotenv(dotenv_path=env_path)
 # --- JDBC ---
 SQLSERVER_HOST = os.getenv("SQLSERVER_HOST", "<server>")
 SQLSERVER_PORT = os.getenv("SQLSERVER_PORT", "1433")
@@ -11,7 +14,10 @@ SQLSERVER_PASS = os.getenv("SQLSERVER_PASS", "<password>")
 SQLSERVER_SCHEMA_SRC = "src"   # source schema
 SQLSERVER_SCHEMA_DW  = "dw"    # target DW schema
 
-JDBC_URL = f"jdbc:sqlserver://{SQLSERVER_HOST}:{SQLSERVER_PORT};databaseName={SQLSERVER_DB}"
+JDBC_URL = (
+    f"jdbc:sqlserver://{SQLSERVER_HOST}:{SQLSERVER_PORT};"
+    f"databaseName={SQLSERVER_DB};encrypt=true;trustServerCertificate=true"
+)
 JDBC_PROPS = {
     "user": SQLSERVER_USER,
     "password": SQLSERVER_PASS,
@@ -25,7 +31,7 @@ GOLD_PATH   = os.getenv("GOLD_PATH",   "data/gold")
 
 # --- Spark Config ---
 
-JDBC_JAR = os.getenv("JDBC_JAR", "C:/Users/Kaust/Downloads/sqljdbc_13.2.1.0_enu/sqljdbc_13.2/enu/jars/mssql-jdbc-13.2.1.jre11.jar")
+JDBC_JAR = os.getenv("JDBC_JAR", "file:///D:/Demo/Sales_Analytics/jars/mssql-jdbc-13.2.1.jre11.jar")
 
 def get_spark(app_name):
     return (
