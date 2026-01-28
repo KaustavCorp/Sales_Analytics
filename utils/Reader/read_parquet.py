@@ -1,5 +1,4 @@
-from pyspark.sql import *
-from Jobs.config import get_spark
+from airflow.jobs.config import get_spark
 
 
 def main():

@@ -1,3 +1,12 @@
+--If tables exist already
+/*
+drop table dw.FactSales;
+drop table dw.DimDate;
+drop table dw.DimProduct;
+drop table dw.DimCustomer;
+drop table dw.DimStore;
+*/
+
 Target DW SQL DDL
 sql
 -- sql/target_dw_ddl.sql

@@ -1,2 +1,6 @@
 .idea/
 .venv/
+airflow/data/Bronze/
+airflow/data/Silver/
+airflow/data/Gold/
+airflow/logs/
