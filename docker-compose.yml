@@ -1,16 +1,14 @@
-version: '3'
 services:
   airflow:
     image: my-airflow:latest
     volumes:
-      - ./airflow/dags:/opt/airflow/dags
-      - ./airflow/logs:/opt/airflow/logs
-      - ./jobs:/opt/airflow/jobs
-      - ./jars:/opt/airflow/jars
-      - ./env:/opt/airflow/env
-      - ./data/Source:/opt/airflow/data/Source
-
-
+      - ./opt/airflow/dags:/opt/airflow/dags
+      - ./opt/airflow/data:/opt/airflow/data
+      - ./opt/airflow/env:/opt/airflow/env
+      - ./opt/airflow/jobs:/opt/airflow/jobs
+      - ./opt/airflow/logs:/opt/airflow/logs
+      - ./opt/airflow/utils:/opt/airflow/utils
+      - ./requirements.txt:/requirements.txt
     ports:
       - "8080:8080"
-    command: airflow standalone
+    command: bash -c "pip install -r /requirements.txt && airflow standalone"

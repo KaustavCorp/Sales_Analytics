@@ -1,6 +1,17 @@
 --SQL Server DDL (Create Tables)
+--First Select the Sales_Analytics DB context and then run the following statements
+--If already exists, do this for a clean start
+/*drop table src.OrderLines;
+drop table src.Orders;
+drop table src.Products;
+drop table src.Customers;
+drop table src.Stores;
+
+drop schema src;
+*/
 
 create schema src;
+
 
 -- Customers Table
 CREATE TABLE src.Customers (
@@ -46,61 +57,116 @@ CREATE TABLE src.OrderLines (
 --------------------------------------------------------------------------
 --Bulk Insert Tables from CSV files( Modify the file structure according to the system )
 -- Load Customers
+--when generated locally in windows
 BULK INSERT src.Customers
-FROM 'D:\Demo\Sales_Analytics\Data\Source\Customers.csv'
+FROM 'D:\Demo\Sales_Analytics\opt\airflow\data\Source\Customers.csv'
 WITH (
     FIRSTROW = 2,
     FIELDTERMINATOR = ',',
     ROWTERMINATOR = '\n',
+    TABLOCK
+);
+
+--when generated via docker(linux)
+BULK INSERT src.Customers
+FROM 'D:\Demo\Sales_Analytics\opt\airflow\data\Source\Customers.csv'
+WITH (
+    FIRSTROW = 2,
+    FIELDTERMINATOR = ',',
+    ROWTERMINATOR = '0x0A',
     TABLOCK
 );
 
 -- Load Products
+--when generated locally in windows
 BULK INSERT src.Products
-FROM 'D:\Demo\Sales_Analytics\Data\Source\Products.csv'
+FROM 'D:\Demo\Sales_Analytics\opt\airflow\data\Source\Products.csv'
 WITH (
     FIRSTROW = 2,
     FIELDTERMINATOR = ',',
     ROWTERMINATOR = '\n',
     TABLOCK
 );
-
+--when generated via docker(linux)
+BULK INSERT src.Products
+FROM 'D:\Demo\Sales_Analytics\opt\airflow\data\Source\Products.csv'
+WITH (
+    FIRSTROW = 2,
+    FIELDTERMINATOR = ',',
+    ROWTERMINATOR = '0x0A',
+    TABLOCK
+);
 -- Load Stores
+--when generated locally in windows
 BULK INSERT src.Stores
-FROM 'D:\Demo\Sales_Analytics\Data\Source\Stores.csv'
+FROM 'D:\Demo\Sales_Analytics\opt\airflow\data\Source\Stores.csv'
 WITH (
     FIRSTROW = 2,
     FIELDTERMINATOR = ',',
     ROWTERMINATOR = '\n',
+    TABLOCK
+);
+--when generated via docker(linux)
+BULK INSERT src.Stores
+FROM 'D:\Demo\Sales_Analytics\opt\airflow\data\Source\Stores.csv'
+WITH (
+    FIRSTROW = 2,
+    FIELDTERMINATOR = ',',
+    ROWTERMINATOR = '0x0A',
     TABLOCK
 );
 
 -- Load Orders
+--when generated locally in windows
 BULK INSERT src.Orders
-FROM 'D:\Demo\Sales_Analytics\Data\Source\Orders.csv'
+FROM 'D:\Demo\Sales_Analytics\opt\airflow\data\Source\Orders.csv'
 WITH (
     FIRSTROW = 2,
     FIELDTERMINATOR = ',',
     ROWTERMINATOR = '\n',
     TABLOCK
 );
+--when generated via docker(linux)
+BULK INSERT src.Orders
+FROM 'D:\Demo\Sales_Analytics\opt\airflow\data\Source\Orders.csv'
+WITH (
+    FIRSTROW = 2,
+    FIELDTERMINATOR = ',',
+    ROWTERMINATOR = '0x0A',
+    TABLOCK
+);
 
 -- Load OrderLines
+--when generated locally in windows
 BULK INSERT src.OrderLines
-FROM 'D:\Demo\Sales_Analytics\Data\Source\OrderLines.csv'
+FROM 'D:\Demo\Sales_Analytics\opt\airflow\data\Source\OrderLines.csv'
 WITH (
     FIRSTROW = 2,
     FIELDTERMINATOR = ',',
     ROWTERMINATOR = '\n',
+    TABLOCK
+);
+--when generated via docker(linux)
+BULK INSERT src.OrderLines
+FROM 'D:\Demo\Sales_Analytics\opt\airflow\data\Source\OrderLines.csv'
+WITH (
+    FIRSTROW = 2,
+    FIELDTERMINATOR = ',',
+    ROWTERMINATOR = '0x0A',
     TABLOCK
 );
 
 --------------------------------------------------------------------------
 --To check if data is loaded correctly in the source tables
 select * from src.Customers;
+select count(distinct(customer_id)) from src.Customers;-- should be 1000
 select * from src.Products;
+select count(distinct(product_id)) from src.Products;-- should be 1000
 select * from src.Stores;
+select count(distinct(store_id))from src.Stores;-- should be 1000
 select * from src.Orders;
+select count(distinct(order_id)) from src.Orders;-- should be 1000
 select * from src.OrderLines;
+select count(distinct(orderline_id)) from src.OrderLines;-- should be 1000
 
 

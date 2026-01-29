@@ -66,4 +66,3 @@ CREATE TABLE dw.FactSales (
     FOREIGN KEY (store_id)    REFERENCES dw.DimStore(store_id),
     FOREIGN KEY (date_id)     REFERENCES dw.DimDate(date_id)
 );
-
