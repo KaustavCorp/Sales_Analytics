@@ -87,4 +87,7 @@ select * from dw.DimDate;
 select * from dw.DimProduct;
 select * from dw.DimStore;
 
+**🛠 Step 12: Stop the Docker Airflow container**
+- Run this command in your project directory terminal- "docker-compose down"
+
 
