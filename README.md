@@ -2,7 +2,7 @@
 
 #### Last Updated On: 02nd February 2026
 ## 🧠 Project Overview
-This project ingests transactional sales data from SQL Server tables, transforms it using **PySpark**, and loads it into a **SQL Server Data Warehouse** 
+This project demonstrates a portfolio ELT pipeline, where it ingests transactional sales data from SQL Server tables, transforms it using **PySpark**, and loads it into a **SQL Server Data Warehouse** 
 following the **Medallion Architecture (Bronze → Silver → Gold)**. The intermediate files are stored in **parquet** format. The source data here has been created using **Faker Python** Code.
 This data is generated in **csv** format and then loaded to **SQL Server Database** in the source tables. **Apache Airflow** is used to orchestrate the ELT pipeline.
 
