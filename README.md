@@ -42,7 +42,7 @@ This data is generated in **csv** format and then loaded to **SQL Server Databas
 
 ## 🚀 Deployment
 **Steps to deploy in local:**
-[docs/How_to_run_in_local_env.md](docs/How_to_run_in_docker_env.md)
+[docs/How_to_run_in_local_env.md](docs/How_to_run_in_local_env.md)
 
 **Steps to deploy in docker:**
 [docs/How_to_run_in_docker_env.md](docs/How_to_run_in_docker_env.md)
